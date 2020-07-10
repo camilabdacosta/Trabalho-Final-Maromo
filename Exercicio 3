@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdlib.h>
+    struct Cliente{
+    char nome[256];
+     int cpf; };
+
+    struct Conta{
+    int numero_da_conta;
+    struct Cliente cliente;
+    float  saldo;};
+
+int main()
+{
+    struct Conta conta;
+    printf("Digite o Numero da conta: \n");
+    scanf("%d", &conta.numero_da_conta);
+    fflush(stdin);
+    printf("Digite o Nome do Cliente: \n");
+    scanf("%c", &conta.cliente.nome);
+    printf("Digite o CPF: \n");
+    fflush(stdin);
+    scanf("%d", &conta.cliente.cpf);
+    printf("\npressione enter para apresentar o menu\n");
+	system("pause");// comando para da pause na tela
+    conta.saldo = 0.0;
+
+int op=100;
+float aux;
+
+
+    while(op!=0)
+	{
+		system("cls");
+		printf("Ola Sr(a) %c\n",conta.cliente.nome);
+		printf("\n ##MENU##\n");
+		printf("[1] - Saque\n");
+		printf("[2] - Deposito\n");
+		printf("[3] - Saldo de conta corrente\n");
+		printf("[0]- sair\n");
+		printf("DIGITE UMA OPCAO: \n");
+		scanf("%d",&op);
+
+		switch(op)
+		{
+			// operação de saque
+			case 1:
+				{
+					printf("Digite o valor que do saque : ");
+					scanf("%f",&aux);
+					if(conta.saldo>0.0 && conta.saldo>=aux)
+					{
+						conta.saldo=conta.saldo-aux;
+						printf("Saque realizado com sucesso\n");
+					}
+					else
+						printf("Saldo insuficiente para saque\n");
+					system("pause");
+				}break;
+
+			//operação de deposito
+			case 2:
+				{
+					printf("Digite o valor para deposito: ");
+					scanf("%f",&aux);
+					if(aux>0.0)
+					{
+						conta.saldo=conta.saldo+aux;
+						printf("\nDeposito realizado com sucesso\n");
+						system("pause");
+					}
+					else
+						printf("Impossivel depositar valor abaixo de 0");
+				}break;
+
+
+				//mostra saldo na conta corrente
+				case 3:
+					{
+						printf("Sr(a) %c, o seu saldo atual da conta corrente: %2.f \n",conta.cliente.nome,conta.saldo);
+						system("pause");
+					}break;
+    }
+	}
+	}
